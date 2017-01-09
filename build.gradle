@@ -51,8 +51,7 @@ if (awsCredentials != null) {
     repositories {
       maven {
         name 's3'
-        // Ensures you have the right region sub-domain and bucket here!
-        url 's3://battlecode-maven-test-aaarblgarbl'
+        url 's3://battlecode-maven'
         credentials(AwsCredentials) {
           accessKey awsCredentials.AWSAccessKeyId
           secretKey awsCredentials.AWSSecretKey
