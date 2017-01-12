@@ -59,7 +59,7 @@ if (awsCredentials != null) {
         repositories {
             maven {
                 name 's3'
-                url 's3://battlecode-maven'
+                url 's3://battlecode-maven-test-aaarblgarbl'
                 credentials(AwsCredentials) {
                     accessKey awsCredentials.AWSAccessKeyId
                     secretKey awsCredentials.AWSSecretKey
