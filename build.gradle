@@ -10,26 +10,26 @@ targetCompatibility = 1.8
 
 // In this section you declare where to find the dependencies of your project
 repositories {
-  // Use 'jcenter' for resolving your dependencies.
-  // You can declare any Maven/Ivy/file repository here.
-  jcenter()
+    // Use 'jcenter' for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    jcenter()
 }
 
 // In this section you declare the dependencies for your production and test code
 dependencies {
-  // Use the currently executing groovy
-  compile localGroovy()
+    // Use the currently executing groovy
+    compile localGroovy()
 
-  // we need the gradle API
-  compile gradleApi()
+    // we need the gradle API
+    compile gradleApi()
 
-  testCompile 'junit:junit:4.12'
+    testCompile 'junit:junit:4.12'
 }
 
 // Handle uploading to the battlecode maven repo with a credentials file
 buildscript {
-  repositories { jcenter() }
-  dependencies { classpath 'com.amazonaws:aws-java-sdk-core:1.11.5' }
+    repositories { jcenter() }
+    dependencies { classpath 'com.amazonaws:aws-java-sdk-core:1.11.5' }
 }
 
 import com.amazonaws.auth.*
@@ -37,32 +37,35 @@ import com.amazonaws.auth.profile.*
 
 
 def fetchAwsCredentials = {
-  try {
-    return new ProfileCredentialsProvider().credentials
-  } catch (Exception exception) {
-    logger.debug('Unable to retrieve AWS credentials from profile, publishing to S3 will not be available.')
-    return null
-  }
+    try {
+        return new ProfileCredentialsProvider().credentials
+    } catch (Exception exception) {
+        logger.debug('Unable to retrieve AWS credentials from profile, publishing to S3 will not be available.')
+        return null
+    }
+}
+
+publishing {
+    publications {
+        plugin(MavenPublication) {
+            from components.java
+        }
+    }
 }
 
 AWSCredentials awsCredentials = fetchAwsCredentials()
 if (awsCredentials != null) {
-  publishing {
-    repositories {
-      maven {
-        name 's3'
-        url 's3://battlecode-maven'
-        credentials(AwsCredentials) {
-          accessKey awsCredentials.AWSAccessKeyId
-          secretKey awsCredentials.AWSSecretKey
+    publishing {
+        repositories {
+            maven {
+                name 's3'
+                url 's3://battlecode-maven'
+                credentials(AwsCredentials) {
+                    accessKey awsCredentials.AWSAccessKeyId
+                    secretKey awsCredentials.AWSSecretKey
+                }
+            }
         }
-      }
     }
-    publications {
-      plugin(MavenPublication) {
-        from components.java
-      }
-    }
-  }
 }
 
