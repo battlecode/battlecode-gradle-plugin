@@ -3,7 +3,7 @@ apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
 group = 'org.battlecode'
-version = '2017.0.0.2'
+version = '2017.0.0.3'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
