@@ -17,7 +17,7 @@ class BattlecodePlugin implements Plugin<Project> {
                 '-Dbc.server.wait-for-client=true',
                 '-Dbc.server.mode=headless',
                 '-Dbc.server.map-path=maps',
-                '-Dbc.server.debug=true',
+                '-Dbc.server.debug=false',
                 '-Dbc.engine.debug-methods=true',
                 '-Dbc.game.team-a='+project.findProperty('teamA'),
                 '-Dbc.game.team-b='+project.findProperty('teamB'),
