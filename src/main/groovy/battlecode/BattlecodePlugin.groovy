@@ -44,8 +44,7 @@ class BattlecodePlugin implements Plugin<Project> {
 
         project.repositories {
             maven {
-                // url "http://battlecode-maven.s3-website-us-east-1.amazonaws.com/"
-                url project.uri('/home/jamie/.m2/repository')
+                url "http://battlecode-maven.s3-website-us-east-1.amazonaws.com/"
             }
         }
 
