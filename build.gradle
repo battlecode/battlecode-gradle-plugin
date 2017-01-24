@@ -3,7 +3,7 @@ apply plugin: 'groovy'
 apply plugin: 'maven-publish'
 
 group = 'org.battlecode'
-version = '2017.0.0.6'
+version = '2017.0.0.7'
 
 sourceCompatibility = 1.8
 targetCompatibility = 1.8
@@ -24,6 +24,9 @@ dependencies {
     compile gradleApi()
 
     testCompile 'junit:junit:4.12'
+
+    testCompile 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.6'
+
 }
 
 // Handle uploading to the battlecode maven repo with a credentials file
@@ -76,4 +79,3 @@ if (awsCredentials != null) {
         }
     }
 }
-
