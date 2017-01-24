@@ -29,6 +29,26 @@ class BattlecodePlugin implements Plugin<Project> {
             ]
         }
 
+        project.task('runDebug', type: JavaExec, dependsOn: 'build') {
+            main = 'battlecode.server.Main'
+            classpath = project.sourceSets.main.runtimeClasspath
+            args = ['-c=-']
+            jvmArgs = [
+                '-agentlib:jdwp=transport=dt_socket,server=y,suspend=y,address=5005',
+                '-Dbc.server.mode=headless',
+                '-Dbc.server.map-path=maps',
+                '-Dbc.server.debug=false',
+                '-Dbc.server.robot-player-to-system-out=false',
+                '-Dbc.engine.debug-methods=true',
+                '-Dbc.game.team-a='+project.findProperty('teamA'),
+                '-Dbc.game.team-b='+project.findProperty('teamB'),
+                '-Dbc.game.team-a.url='+project.buildDir+'/classes',
+                '-Dbc.game.team-b.url='+project.buildDir+'/classes',
+                '-Dbc.game.maps='+project.findProperty('maps'),
+                '-Dbc.server.save-file=' + 'matches/' + project.findProperty('teamA') + '-vs-' + project.findProperty('teamB') + '-on-' + project.findProperty('maps') + '.bc17'
+            ]
+        }
+
         def arch64 = false
         def arch32 = false
 

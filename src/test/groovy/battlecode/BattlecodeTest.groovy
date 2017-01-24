@@ -9,6 +9,9 @@ class GreetingPluginTest {
     @Test
     public void greeterPluginAddsGreetingTaskToProject() {
         Project project = ProjectBuilder.builder().build()
+        project.pluginManager.apply 'java'
+        project.pluginManager.apply 'scala'
+        project.pluginManager.apply 'kotlin'
         project.pluginManager.apply 'battlecode'
     }
 }

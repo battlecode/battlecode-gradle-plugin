@@ -24,6 +24,9 @@ dependencies {
     compile gradleApi()
 
     testCompile 'junit:junit:4.12'
+
+    testCompile 'org.jetbrains.kotlin:kotlin-gradle-plugin:1.0.6'
+
 }
 
 // Handle uploading to the battlecode maven repo with a credentials file
@@ -76,4 +79,3 @@ if (awsCredentials != null) {
         }
     }
 }
-
