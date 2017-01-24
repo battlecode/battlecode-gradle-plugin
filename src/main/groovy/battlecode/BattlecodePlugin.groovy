@@ -38,7 +38,7 @@ class BattlecodePlugin implements Plugin<Project> {
                 '-Dbc.server.mode=headless',
                 '-Dbc.server.map-path=maps',
                 '-Dbc.server.debug=false',
-                '-Dbc.server.robot-player-to-system-out=false',
+                '-Dbc.server.robot-player-to-system-out=true',
                 '-Dbc.engine.debug-methods=true',
                 '-Dbc.game.team-a='+project.findProperty('teamA'),
                 '-Dbc.game.team-b='+project.findProperty('teamB'),
